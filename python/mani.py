@@ -1,5 +1,4 @@
 config = dict()
-import pywin
 
 individuo = {
         'nombre':str(),
