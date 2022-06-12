@@ -1,0 +1,23 @@
+año:AAAA
+	ciclo: Q
+		-comparacion de cantidad de alumnos por carrera inscritos		
+
+
+		Z examen(comparacion de zonas)
+			-comparacion de cantidad de alumnos en cada carrera
+			-comparacion de cantidad de alumnos en cada zona
+			-comparacion de cantidad de alumnos entre los que superaron la nota 10 y los que no
+			-comparacion de nota promedio por carrera
+			-comparacion de nota promedio por lugar(zona-1, zona-2, etc)
+
+			
+			zona: X(comparacion de lugares)
+				-comparacion de cantidad de alumnos en cada escuela
+				-comparacion de cantidad de alumnos en cada lugar		
+				-comparacion de nota promedio por lugar(tambo, san miguel)
+				-comparacion de nota promedio por carrera
+
+				sub-zona: X
+					-comparacion de cantidad de alumnos en cada escuela
+					-comparacion de nota promedio por carrera
+					-comparacion de cantidad de alumnos entre los que superaron la nota 10 y los que no

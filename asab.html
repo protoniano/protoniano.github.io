@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <style>
+        * {
+            padding: 0%;
+            margin: 0%;
+        }
+
+        body {
+            background-color: rgb(0, 18, 97);
+            margin: auto;
+            width: 1333px;
+            height: min-content;
+        }
+
+        .box {
+            display: inline-block;
+            margin: auto;
+            background-color: rgb(255, 255, 255);
+            width: calc(16 * 40px);
+            height: calc(9 * 50px);
+            border-radius: 10px;
+            border:2px black solid;
+            box-shadow: 1px 0px 20px 10px rgb(189, 189, 189);
+            margin-top: 50px;
+
+        }
+
+        .box-top-side {
+            background-color: rgb(68, 0, 255);
+            height: 30px;
+            width: 100%;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        svg{
+            position: absolute;
+        }
+        
+    </style>
+</head>
+
+<body>
+    
+    <div style="background:red; height: max-content; margin-top: 100px; padding: 10px;">
+        <div style="background:rgb(255, 255, 255);margin:auto;padding:10px">
+            <div class="box">
+                <div class="box-top-side">
+                    
+                </div>
+            </div>
+            <div class="box">
+                <div class="box-top-side">
+
+                </div>
+                <svg class="svg" width="11px" height="11px" style="background-color: rgba(255, 0, 55, 0.5);">
+                    <style>
+                        #abc{
+                            transition-duration: .5s;
+                            stroke: rgb(197, 255, 96);
+                        }
+                        .circle{
+                            transition-duration: .5s;
+                            stroke: rgb(197, 255, 96);
+                        }
+                        svg:hover #abc{
+                            stroke: rgb(152, 124, 255);
+                            transform: scale(1.1);
+                        }
+                        
+                    </style>
+                    <g  xmlns="http://www.w3.org/2000/svg" transform="scale(1)"> 
+                        <path id="abc" d="M 100,10 Q 10,10 10,95 Q 10,190 100,190 Q 190,190 190,95 Q 190,10 100,10" stroke-width="3"  fill="#f00"></path>
+                    </g>
+                    <circle class="circle" cx="10" cy="10" r="10"/>
+                </svg>
+            </div>
+            <div class="box">
+                <div class="box-top-side">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
