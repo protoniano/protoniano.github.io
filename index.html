@@ -7,6 +7,7 @@
         body{
             background-color: hsl(300, 50%, 70%);
         }
+        
     </style>
 </head>
 
@@ -14,4 +15,8 @@
     <div>
         <div>Preessen</div>
     </div>
+    <script>
+        const varr= [50, 40, 30, 20];
+        d3.select('body').selectAll('div').data(varr).enter().append('div).text((d)=>(d+' Px'));
+    </script>
 </body>
