@@ -1,23 +1,189 @@
 <!DOCTYPE html>
 
 <head>
-    <title>manicriado</title>
-    <link rel="incon" type="image/x-icon" href="favicon (1).ico">
-    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <script type="text/javascript" src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="sp.js"></script>
+    <link rel="icon" type="image/x-icon" href="fav.ico">
     <style>
-        body{
-            background-color: hsl(300, 50%, 70%);
+        * {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
         }
-        
+
+        body {
+            background: linear-gradient(90deg, rgb(125, 125, 255), rgb(175, 175, 255));
+        }
+
+        .bar {
+            transition-duration: 0.2s;
+        }
+
+        .bar:hover {
+            fill: rgba(255, 255, 255, 0.2);
+        }
+
+        #sas {
+            background-color: rgb(116, 28, 230);
+            width: min-content;
+            margin: auto;
+        }
+
+        #bosque {
+            background-color: rgb(35, 214, 214);
+        }
+
+        #divbutton {
+            background-color: rgb(125, 125, 255);
+            padding: 10px;
+        }
+
+        form {
+            background-color: rgb(196, 241, 104);
+            box-sizing: content-box;
+            padding: 10px;
+        }
+
+        form li {
+            display: inline-block;
+            list-style: none;
+        }
+
+        select {
+            width: 100px;
+
+        }
+
+        .sas-div {
+            display: inline-block;
+        }
     </style>
 </head>
 
 <body>
-    <div>
-        <div>Preessen</div>
-    </div>
+    <main>
+        <div id="sas">
+            <div id="bosque">
+                <div class="sas-div">
+                    <form id="forma">
+                        <ul>
+                            <li>
+                                <div>
+                                    <select name="año">
+                                        <option value="2020">2020</option>
+                                        <option value="2021">2021</option>
+                                        <option value="2022">2022</option>
+                                    </select>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <select name="ciclo">
+                                        <option value="CicloI">Ciclo I</option>
+                                        <option value="CicloII">Ciclo II</option>
+                                        <option value="CicloIII">Ciclo III</option>
+                                    </select>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <select name="zona">
+                                        <option value="ZonaI">Zona I</option>
+                                        <option value="ZonaII">Zona II</option>
+                                        <option value="ZonaIII">zona III</option>
+                                    </select>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <select name="examen">
+                                        <option value="ExamenI">1° Examen</option>
+                                        <option value="ExamenII">2° Examen</option>
+                                        <option value="ExamenIII">3° Examen</option>
+                                    </select>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </form>
+
+                </div>
+                <div class="sas-div">
+                    <div id="divbutton">
+                        <input id="sender" type="button" onclick="consoler()" value="submit">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
     <script>
-        const varr= [50, 40, 30, 20];
-        d3.select('body').selectAll('h1').data(varr).enter().append('h1').text((d)=>(d+' Px'));
+        const sender = document.getElementById('sender');
+        const form = (document.forms)[0]
+        let is_again_clicked = ""
+
+        function consoler() {
+            var arr = ""
+            for (var i = 0; i < form.length; i++) {
+                arr += form[i].value
+            }
+
+            if (is_again_clicked !== arr) {
+                console.log(arr)
+                is_again_clicked = arr
+            }
+        }
+
+    </script>
+    <script>
+
+        const k = 40;
+        const w = 16 * k;
+        const h = 9 * k;
+        const padding = 30;
+        var database = [53, 64, 98, 74, 61, 34, 39, 10, 15, 160, 5];
+        database = acomodador(database, 0);
+        const svg = d3.select('#sas')
+            .append("svg")
+            .attr("width", w)
+            .attr("height", h)
+            .style("background", "rgb(125, 125, 255)")
+
+        svg.selectAll("rect")
+            .data(database)
+            .enter()
+            .append("rect")
+            .attr("class", "bar")
+            .attr("fill", "rgba(255, 255, 255, 0.5")
+            .attr("width", 28)
+            .attr("height", (d) => d)
+            .attr("x", (d, i) => i * 30 + padding)
+            .attr("y", (d) => h - (d + padding))
+            .append("title")
+            .text((d) => d)
+
+        //svg.append("path")
+        //    .attr("fill", "none")
+        //    .attr("stroke", "black")
+        //    .attr("stroke-width", 1.5)
+        //    .attr("stroke-miterlimit", 1)
+        //    .attr("d", masonte(database, h-30))
+
+        svg.selectAll("text")
+            .data(database)
+            .enter()
+            .append("text")
+            .text((d) => d)
+            .attr("x", (d, i) => {
+                var ds = (d + "");
+                if (ds.length >= 3) {
+                    return i * 30 + padding + 0
+                } else if (ds.length === 2) {
+                    return i * 30 + padding + 5
+                } else {
+                    return i * 30 + padding + 8
+                }
+            })
+            .attr("y", (d) => h - (d + padding) - 5)
     </script>
 </body>
