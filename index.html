@@ -4,6 +4,7 @@
 
     <script type="text/javascript" src="https://d3js.org/d3.v7.min.js"></script>
     <script src="sp.js"></script>
+    <script src="select.js"></script>
     <link rel="icon" type="image/x-icon" href="fav.ico">
     <style>
         * {
@@ -70,69 +71,125 @@
                         <ul>
                             <li>
                                 <div>
-                                    <select name="año">
-                                        <option value="2020">2020</option>
-                                        <option value="2021">2021</option>
-                                        <option value="2022">2022</option>
+                                    <select name="age">
+                                        <option value="2022" selected="true">2022</option>
                                     </select>
                                 </div>
                             </li>
                             <li>
                                 <div>
                                     <select name="ciclo">
-                                        <option value="CicloI">Ciclo I</option>
-                                        <option value="CicloII">Ciclo II</option>
-                                        <option value="CicloIII">Ciclo III</option>
-                                    </select>
-                                </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <select name="zona">
-                                        <option value="ZonaI">Zona I</option>
-                                        <option value="ZonaII">Zona II</option>
-                                        <option value="ZonaIII">zona III</option>
+                                        <option value=""> </option>
+                                        <option value="ciclo_i">Ciclo I</option>
+                                        <option value="ciclo_ii">Ciclo II</option>
+                                        <option value="ciclo_iii">Ciclo III</option>
                                     </select>
                                 </div>
                             </li>
                             <li>
                                 <div>
                                     <select name="examen">
-                                        <option value="ExamenI">1° Examen</option>
-                                        <option value="ExamenII">2° Examen</option>
-                                        <option value="ExamenIII">3° Examen</option>
+                                        <option value=""> </option>
+                                        <option value="examen_i">1° Examen</option>
+                                        <option value="examen_ii">2° Examen</option>
+                                        <option value="examen_iii">3° Examen</option>
                                     </select>
                                 </div>
                             </li>
-
+                            <li>
+                                <div>
+                                    <select name="zona">
+                                        <option value=""> </option>
+                                        <option value="zona_i">Zona I</option>
+                                        <option value="zona_ii">Zona II</option>
+                                        <option value="zona_iii">zona III</option>
+                                    </select>
+                                </div>
+                            </li>
                         </ul>
                     </form>
 
                 </div>
                 <div class="sas-div">
                     <div id="divbutton">
-                        <input id="sender" type="button" onclick="consoler()" value="submit">
+                        <button id="sender">Try it</button>
                     </div>
                 </div>
             </div>
         </div>
     </main>
+
+    <script>
+
+    </script>
     <script>
         const sender = document.getElementById('sender');
-        const form = (document.forms)[0]
+        const form = (document.forms)[0]    
+        const form_elements_length = form.length
+        let list_de_sitios = Array()
         let is_again_clicked = ""
+
+        let selecteds = [0,2,3,3]        
+
+        var b = form.getElementsByTagName('select')
+        
+        for (let i = 2; i < b.length; i++) {
+            const element = b[i];
+            element.disabled = true
+        }
+
+        b[1].addEventListener('change', function () {
+            if(b[1].value != ""){
+                b[2].disabled = false
+            }else{
+                for (let i = 2; i < b.length; i++) {
+                    const element = b[i];
+                    element.value = ""
+                    element.disabled = true
+                }
+            }
+        })
+        b[2].addEventListener('change', function () {
+            if(b[2].value != ""){
+                b[3].disabled = false
+            }else{
+                for (let i = 2; i < b.length; i++) {
+                    const element = b[i];
+                    element.value = ""
+                    element.disabled = true
+                }
+            }
+        })
 
         function consoler() {
             var arr = ""
-            for (var i = 0; i < form.length; i++) {
-                arr += form[i].value
+            var sear = "https://protonianosaurio.github.io/informacion/j_sons/"
+            
+            let llenos = 0
+            while (form[llenos+1].value != "") {
+                const value = form[llenos].value
+                sear += value + "/"
+                arr += value
+                if(llenos == 2){
+                    llenos+=1
+                    break
+              ""  }
+                llenos+=1
             }
 
+            if(llenos <= 2){
+                sear += (form[llenos].value+"/"+form[llenos].value + ".json")
+            }else{
+                sear += (form[llenos].value + ".json")
+            }
+
+            arr += form[llenos].value
             if (is_again_clicked !== arr) {
-                console.log(arr)
                 is_again_clicked = arr
+                console.log(sear)
             }
         }
+        sender.addEventListener("click", consoler)
 
     </script>
     <script>
@@ -155,10 +212,10 @@
             .append("rect")
             .attr("class", "bar")
             .attr("fill", "rgba(255, 255, 255, 0.5")
-            .attr("width", 28)
-            .attr("height", (d) => d)
-            .attr("x", (d, i) => i * 30 + padding)
-            .attr("y", (d) => h - (d + padding))
+            .attr("width", 35)
+            .attr("height", (d) => d*1.5)
+            .attr("x", (d, i) => i * 40 + padding + 60)
+            .attr("y", (d) => h - (d*1.5 + padding))
             .append("title")
             .text((d) => d)
 
@@ -177,13 +234,13 @@
             .attr("x", (d, i) => {
                 var ds = (d + "");
                 if (ds.length >= 3) {
-                    return i * 30 + padding + 0
+                    return i * 40 + padding + 5 +60
                 } else if (ds.length === 2) {
-                    return i * 30 + padding + 5
+                    return i * 40 + padding + 10 +60
                 } else {
-                    return i * 30 + padding + 8
+                    return i * 40 + padding + 16 +60
                 }
             })
-            .attr("y", (d) => h - (d + padding) - 5)
+            .attr("y", (d) => h - (d*1.5 + padding) - 5)
     </script>
 </body>
