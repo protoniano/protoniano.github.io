@@ -60,7 +60,7 @@ function masonte(listax, height) {
 }
 
 const rqt = new Request("images/jac.json");
-const pap = []
+const pap = {}
 
 fetch(rqt)
 .then((response)=>{
