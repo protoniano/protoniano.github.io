@@ -71,8 +71,7 @@ fetch(rqt)
     return response.json()
 })
 .then((response)=>{
-    console.log(response);
-    console.log(pap);
+    console.log(response)
     pap = response;
 })
 console.log(pap);
