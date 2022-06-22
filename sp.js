@@ -71,4 +71,5 @@ fetch(rqt)
 })
 .then((response)=>{
     console.log(response);
+    console.log(2+2);
 })
