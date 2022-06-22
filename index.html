@@ -4,7 +4,7 @@
 
     <script type="text/javascript" src="https://d3js.org/d3.v7.min.js"></script>
     <script src="sp.js"></script>
-    <script src="select.js"></script>
+
     <link rel="icon" type="image/x-icon" href="fav.ico">
     <style>
         * {
@@ -59,6 +59,10 @@
         .sas-div {
             display: inline-block;
         }
+
+        .hide_class {
+            display: none;
+        }
     </style>
 </head>
 
@@ -72,7 +76,7 @@
                             <li>
                                 <div>
                                     <select name="age">
-                                        <option value="2022" selected="true">2022</option>
+                                        <option value=""> </option>
                                     </select>
                                 </div>
                             </li>
@@ -80,9 +84,10 @@
                                 <div>
                                     <select name="ciclo">
                                         <option value=""> </option>
-                                        <option value="ciclo_i">Ciclo I</option>
-                                        <option value="ciclo_ii">Ciclo II</option>
-                                        <option value="ciclo_iii">Ciclo III</option>
+                                        <option value="ciclo_I" class="hide_class">Ciclo I</option>
+                                        <option value="ciclo_II" class="hide_class">Ciclo II</option>
+                                        <option value="ciclo_III" class="hide_class">Ciclo III</option>
+                                        <option value="ciclo_IV" class="hide_class">Ciclo IV</option>
                                     </select>
                                 </div>
                             </li>
@@ -90,9 +95,10 @@
                                 <div>
                                     <select name="examen">
                                         <option value=""> </option>
-                                        <option value="examen_i">1° Examen</option>
-                                        <option value="examen_ii">2° Examen</option>
-                                        <option value="examen_iii">3° Examen</option>
+                                        <option value="examen_I" class="hide_class">1° Examen</option>
+                                        <option value="examen_II" class="hide_class">2° Examen</option>
+                                        <option value="examen_III" class="hide_class">3° Examen</option>
+                                        <option value="examen_Iv" class="hide_class">4° Examen</option>
                                     </select>
                                 </div>
                             </li>
@@ -100,9 +106,9 @@
                                 <div>
                                     <select name="zona">
                                         <option value=""> </option>
-                                        <option value="zona_i">Zona I</option>
-                                        <option value="zona_ii">Zona II</option>
-                                        <option value="zona_iii">zona III</option>
+                                        <option value="zona_I">Zona I</option>
+                                        <option value="zona_II">Zona II</option>
+                                        <option value="zona_III">zona III</option>
                                     </select>
                                 </div>
                             </li>
@@ -120,28 +126,124 @@
     </main>
 
     <script>
+        //const form = (document.forms)[0]; select_inf
+        const form = document.getElementById('forma')
+        const sender = document.getElementById('sender');
+        const age_select = form[0]
+        const ciclo_select = form[1]
+        const examen_select = form[2]
+        const zona_select = form[3]
+        const romanos = ["i", "ii", "iii", "iv", "v"]
+        const puestos = ["1°", "2°", "3°", "4°", "5°"]
+        const select_json_url = "https://protonianosaurio.github.io/select/select.json"
+        const select_example = document.createElement('select')
+        const rquest = new XMLHttpRequest();
 
+        rquest.open('GET', select_json_url)
+        rquest.responseType = 'json';
+        rquest.send()
+
+        rquest.onload = function () {
+            const respuesta = rquest.response
+            var aver_si_cambia = 0
+
+            for (i in respuesta) {
+                const option = document.createElement('option')
+                option.value = i
+                option.textContent = i
+                age_select.appendChild(option)
+            }
+            var age_ = ""
+            var ciclo_ = ""
+
+            age_select.addEventListener('change', function () {
+                const value = age_select.value
+                ciclo_select.selectedIndex = ciclo_select[0]
+                hide_examen_selector()
+                hide_zona_selector()
+                var ciclos = Object.keys(respuesta[value]).length
+                for (let i = 1; i < ciclo_select.length - 1; i++) {
+                    if (i <= ciclos) {
+                        //ciclo_select[i].removeAttribute("class")
+                        //ciclo_select[i].classList.remove("hide_class")
+                        ciclo_select[i].className = ""
+                    } else {
+                        //ciclo_select[i].classList.add("hide_class")
+                        ciclo_select[i].className = "hide_class"
+                    }
+                }
+                age_ = value
+            })
+
+            ciclo_select.addEventListener('change', function () {
+                const value = ciclo_select.value;
+                examen_select.selectedIndex = examen_select[0]
+                hide_zona_selector()
+
+                var examenes = Object.keys(respuesta[age_][value]).length
+                for (let i = 1; i < examen_select.length; i++) {
+                    if (i <= examenes) {
+                        examen_select[i].className = ""
+                    } else {
+                        examen_select[i].className = "hide_class"
+                    }
+                }
+                ciclo_ = value;
+            })
+
+            examen_select.addEventListener('change', function () {
+                const value = examen_select.value;
+                zona_select.selectedIndex = zona_select[0]
+
+                var zonas = respuesta[age_][ciclo_][value].length
+
+                for (let i = 1; i < zona_select.length; i++) {
+                    if (i <= zonas) {
+                        zona_select[i].className = ""
+                    } else {
+                        zona_select[i].className = "hide_class"
+                    }
+                }
+            })
+        }
+
+        //for(i in select_inf){
+        //    let baca = document.createElement("option")
+        //    baca.value = i;
+        //    baca.textContent = i;
+        //    form[0].appendChild(baca)
+        //}
+        function hide_examen_selector() {
+            examen_select.selectedIndex = examen_select[0]
+            for (let i = 1; i < examen_select.length; i++) {
+                examen_select[i].className = "hide_class"
+            }
+        }
+        function hide_zona_selector() {
+            zona_select.selectedIndex = zona_select[0]
+            for (let i = 1; i < zona_select.length; i++) {
+                zona_select[i].className = "hide_class"
+            }
+        }
     </script>
     <script>
-        const sender = document.getElementById('sender');
-        const form = (document.forms)[0]    
         const form_elements_length = form.length
         let list_de_sitios = Array()
         let is_again_clicked = ""
 
-        let selecteds = [0,2,3,3]        
+        let selecteds = [0, 2, 3, 3]
 
-        var b = form.getElementsByTagName('select')
-        
+        /*var b = form.getElementsByTagName('select')
+
         for (let i = 2; i < b.length; i++) {
             const element = b[i];
             element.disabled = true
         }
 
         b[1].addEventListener('change', function () {
-            if(b[1].value != ""){
+            if (b[1].value != "") {
                 b[2].disabled = false
-            }else{
+            } else {
                 for (let i = 2; i < b.length; i++) {
                     const element = b[i];
                     element.value = ""
@@ -150,36 +252,37 @@
             }
         })
         b[2].addEventListener('change', function () {
-            if(b[2].value != ""){
+            if (b[2].value != "") {
                 b[3].disabled = false
-            }else{
+            } else {
                 for (let i = 2; i < b.length; i++) {
                     const element = b[i];
                     element.value = ""
                     element.disabled = true
                 }
             }
-        })
+        })*/
 
         function consoler() {
             var arr = ""
             var sear = "https://protonianosaurio.github.io/informacion/j_sons/"
-            
+
             let llenos = 0
-            while (form[llenos+1].value != "") {
+            while (form[llenos + 1].value != "") {
                 const value = form[llenos].value
                 sear += value + "/"
                 arr += value
-                if(llenos == 2){
-                    llenos+=1
+                if (llenos == 2) {
+                    llenos += 1
                     break
-              ""  }
-                llenos+=1
+                    ""
+                }
+                llenos += 1
             }
 
-            if(llenos <= 2){
-                sear += (form[llenos].value+"/"+form[llenos].value + ".json")
-            }else{
+            if (llenos <= 2) {
+                sear += (form[llenos].value + "/" + form[llenos].value + ".json")
+            } else {
                 sear += (form[llenos].value + ".json")
             }
 
@@ -213,9 +316,9 @@
             .attr("class", "bar")
             .attr("fill", "rgba(255, 255, 255, 0.5")
             .attr("width", 35)
-            .attr("height", (d) => d*1.5)
+            .attr("height", (d) => d * 1.5)
             .attr("x", (d, i) => i * 40 + padding + 60)
-            .attr("y", (d) => h - (d*1.5 + padding))
+            .attr("y", (d) => h - (d * 1.5 + padding))
             .append("title")
             .text((d) => d)
 
@@ -234,13 +337,13 @@
             .attr("x", (d, i) => {
                 var ds = (d + "");
                 if (ds.length >= 3) {
-                    return i * 40 + padding + 5 +60
+                    return i * 40 + padding + 5 + 60
                 } else if (ds.length === 2) {
-                    return i * 40 + padding + 10 +60
+                    return i * 40 + padding + 10 + 60
                 } else {
-                    return i * 40 + padding + 16 +60
+                    return i * 40 + padding + 16 + 60
                 }
             })
-            .attr("y", (d) => h - (d*1.5 + padding) - 5)
+            .attr("y", (d) => h - (d * 1.5 + padding) - 5)
     </script>
 </body>
