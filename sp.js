@@ -58,3 +58,17 @@ function masonte(listax, height) {
     }
     return t
 }
+
+const rqt = new Request("images/jac.json");
+
+fetch(rqt)
+.then((response)=>{
+    if(!response.ok){
+        throw new Error(`HTTP error! Status: ${ response.status }`);
+    }
+
+    return response.json()
+})
+.then((response)=>{
+    console.log(response);
+})
