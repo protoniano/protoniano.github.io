@@ -4,14 +4,6 @@
             "examen_I": [
                 "Zona I",
                 "Zona II"
-            ],
-            "examen_II": [
-                "Zona I",
-                "Zona II"
-            ],
-            "examen_III": [
-                "Zona I",
-                "Zona II"
             ]
         },
         "ciclo_II": {
@@ -20,10 +12,6 @@
                 "Zona II"
             ],
             "examen_II": [
-                "Zona I",
-                "Zona II"
-            ],
-            "examen_III": [
                 "Zona I",
                 "Zona II"
             ]
