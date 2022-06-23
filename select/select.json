@@ -1,4 +1,54 @@
 {
+    "2020": {
+        "ciclo_I": {
+            "examen_I": [
+                "Zona I",
+                "Zona II"
+            ]
+        },
+        "ciclo_II": {
+            "examen_I": [
+                "Zona I",
+                "Zona II"
+            ],
+            "examen_II": [
+                "Zona I",
+                "Zona II"
+            ],
+            "examen_III": [
+                "Zona I",
+                "Zona II"
+            ]
+        },
+        "ciclo_III": {
+            "examen_I": [
+                "Zona I",
+                "Zona II"
+            ],
+            "examen_II": [
+                "Zona I",
+                "Zona II"
+            ],
+            "examen_III": [
+                "Zona I",
+                "Zona II"
+            ]
+        },
+        "ciclo_IV": {
+            "examen_I": [
+                "Zona I",
+                "Zona II"
+            ],
+            "examen_II": [
+                "Zona I",
+                "Zona II"
+            ],
+            "examen_III": [
+                "Zona I",
+                "Zona II"
+            ]
+        }
+    },
     "2021": {
         "ciclo_I": {
             "examen_I": [
