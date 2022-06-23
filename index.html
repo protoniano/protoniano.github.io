@@ -136,8 +136,77 @@
         const zona_select = form[3]
         const romanos = ["i", "ii", "iii", "iv", "v"]
         const puestos = ["1°", "2°", "3°", "4°", "5°"]
-        const select_json_url = "https://protonianosaurio.github.io/select/select.json"
+
         const select_example = document.createElement('select')
+
+        const select_json_url = "https://protonianosaurio.github.io/select/select.json"
+
+        fetch(select_json_url).then(response => {
+            return response.json();
+        }).then(json_file => {
+            const respuesta = json_file
+            var aver_si_cambia = 0
+
+            for (i in respuesta) {
+                const option = document.createElement('option')
+                option.value = i
+                option.textContent = i
+                age_select.appendChild(option)
+            }
+            var age_ = ""
+            var ciclo_ = ""
+
+            age_select.addEventListener('change', function () {
+                const value = age_select.value
+                ciclo_select.selectedIndex = ciclo_select[0]
+                hide_examen_selector()
+                hide_zona_selector()
+                var ciclos = Object.keys(respuesta[value]).length
+                for (let i = 1; i < ciclo_select.length; i++) {
+                    if (i <= ciclos) {
+                        //ciclo_select[i].removeAttribute("class")
+                        //ciclo_select[i].classList.remove("hide_class")
+                        ciclo_select[i].className = ""
+                    } else {
+                        //ciclo_select[i].classList.add("hide_class")
+                        ciclo_select[i].className = "hide_class"
+                    }
+                }
+                age_ = value
+            })
+
+            ciclo_select.addEventListener('change', function () {
+                const value = ciclo_select.value;
+                examen_select.selectedIndex = examen_select[0]
+                hide_zona_selector()
+
+                var examenes = Object.keys(respuesta[age_][value]).length
+                for (let i = 1; i < examen_select.length; i++) {
+                    if (i <= examenes) {
+                        examen_select[i].className = ""
+                    } else {
+                        examen_select[i].className = "hide_class"
+                    }
+                }
+                ciclo_ = value;
+            })
+
+            examen_select.addEventListener('change', function () {
+                const value = examen_select.value;
+                zona_select.selectedIndex = zona_select[0]
+
+                var zonas = respuesta[age_][ciclo_][value].length
+
+                for (let i = 1; i < zona_select.length; i++) {
+                    if (i <= zonas) {
+                        zona_select[i].className = ""
+                    } else {
+                        zona_select[i].className = "hide_class"
+                    }
+                }
+            })
+        })
+        /*
         const rquest = new XMLHttpRequest();
 
         rquest.open('GET', select_json_url)
@@ -207,6 +276,8 @@
                 }
             })
         }
+
+        */
 
         //for(i in select_inf){
         //    let baca = document.createElement("option")

@@ -85,7 +85,9 @@
         "ciclo_I": {
             "examen_I": [
                 "Zona I",
-                "Zona II"
+                "Zona II",
+                "Zona III",
+                "Zona IV"
             ],
             "examen_II": [
                 "Zona I"
