@@ -93,5 +93,15 @@
                 "Zona I"
             ]
         }
+    },
+    "2023": {
+        "ciclo_I": {
+            "examen_I": [
+                "Zona I",
+                "Zona II",
+                "Zona III",
+                "Zona IV"
+            ]
+        }
     }
 }

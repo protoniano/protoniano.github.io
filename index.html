@@ -112,6 +112,7 @@
                                         <option value="zona_I" class="hide_class">Zona I</option>
                                         <option value="zona_II" class="hide_class">Zona II</option>
                                         <option value="zona_III" class="hide_class">zona III</option>
+                                        <option value="zona_IV" class="hide_class">zona IV</option>
                                     </select>
                                 </div>
                             </li>
@@ -363,7 +364,7 @@
             arr += form[llenos].value
             if (is_again_clicked !== arr) {
                 is_again_clicked = arr
-                
+
                 const fechPromise = fetch(sear)
                 fechPromise.then(response =>{
                     if(!response.ok){
