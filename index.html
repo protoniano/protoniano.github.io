@@ -116,6 +116,18 @@
                                     </select>
                                 </div>
                             </li>
+                            <li>
+                                <div>
+                                    <select name="lugar">
+                                        <option value="" class="hide_class"></option>
+                                        <option value="" class="hide_class"></option>
+                                        <option value="" class="hide_class"></option>
+                                        <option value="" class="hide_class"></option>
+                                        <option value="" class="hide_class"></option>
+                                        <option value="" class="hide_class"></option>
+                                    </select>
+                                </div>
+                            </li>
                         </ul>
                     </form>
 
@@ -137,8 +149,9 @@
         const ciclo_select = form[1]
         const examen_select = form[2]
         const zona_select = form[3]
-        const romanos = ["i", "ii", "iii", "iv", "v"]
-        const puestos = ["1°", "2°", "3°", "4°", "5°"]
+        const lugar_select = form[4]
+        //const romanos = ["i", "ii", "iii", "iv", "v"]
+        //const puestos = ["1°", "2°", "3°", "4°", "5°"]
 
         const select_example = document.createElement('select')
 
@@ -158,12 +171,16 @@
             }
             var age_ = ""
             var ciclo_ = ""
+            var examen_ =""
+            var zona_ = ""
 
             age_select.addEventListener('change', function () {
                 const value = age_select.value
                 ciclo_select.selectedIndex = ciclo_select[0]
+
                 hide_examen_selector()
                 hide_zona_selector()
+                hide_lugar_selector()
                 var ciclos = Object.keys(respuesta[value]).length
                 for (let i = 1; i < ciclo_select.length; i++) {
                     if (i <= ciclos) {
@@ -182,6 +199,7 @@
                 const value = ciclo_select.value;
                 examen_select.selectedIndex = examen_select[0]
                 hide_zona_selector()
+                hide_lugar_selector()    
 
                 var examenes = Object.keys(respuesta[age_][value]).length
                 for (let i = 1; i < examen_select.length; i++) {
@@ -197,14 +215,32 @@
             examen_select.addEventListener('change', function () {
                 const value = examen_select.value;
                 zona_select.selectedIndex = zona_select[0]
+                hide_lugar_selector()  
 
-                var zonas = respuesta[age_][ciclo_][value].length
+                var zonas = Object.keys(respuesta[age_][ciclo_][value]).length
 
                 for (let i = 1; i < zona_select.length; i++) {
                     if (i <= zonas) {
                         zona_select[i].className = ""
                     } else {
                         zona_select[i].className = "hide_class"
+                    }
+                }
+                examen_ = value
+            })
+
+            zona_select.addEventListener('change', function () {
+                const value = lugar_select.value
+                lugar_select.selectedIndex = lugar_select[0]
+
+                lugars = respuesta[age_][ciclo_][examen_][value]
+                for(let i = 1; i < lugar_select.length;i++){
+                    if(i <= lugars.length){
+                        lugar_select[i].value = lugars[i-1]
+                        lugar_select[i].textContent = lugars[i-1]
+                        lugar_select[i].className = ""
+                    }else{
+                        lugar_select[i].className = "hide_class"
                     }
                 }
             })
@@ -296,6 +332,13 @@
         }
         function hide_zona_selector() {
             zona_select.selectedIndex = zona_select[0]
+            for (let i = 1; i < zona_select.length; i++) {
+                zona_select[i].className = "hide_class"
+            }
+        }
+        function hide_lugar_selector() {
+            lugar_select.selectedIndex = lugar_select[0]
+            // realiza con una condicio para su rompmiendo o continuacnion
             for (let i = 1; i < zona_select.length; i++) {
                 zona_select[i].className = "hide_class"
             }
