@@ -4,7 +4,7 @@
             "examen_I": {
                 "zona_I":["Huamanga"],
                 "zona_II":["Tambo","Chincheros","San Miguel"],
-                "zona_III":["Puquio","Fajardo","LOS","Cangallo"],
+                "zona_III":["Puquio","Victor","LOS","Cangallo"],
                 "zona_IV":["Villa Virgen", "Kimbiri"]
             }
         },
@@ -12,13 +12,13 @@
             "examen_I": {
                 "zona_I":["Huamanga"],
                 "zona_II":["Tambo","Chincheros","San Miguel"],
-                "zona_III":["Puquio","Fajardo","LOS","Cangallo"],
+                "zona_III":["Puquio","Victor","LOS","Cangallo"],
                 "zona_IV":["Villa Virgen", "Kimbiri"]
             },
             "examen_II": {
                 "zona_I":["Huamanga"],
                 "zona_II":["Tambo","Chincheros","San Miguel"],
-                "zona_III":["Puquio","Fajardo","LOS","Cangallo"],
+                "zona_III":["Puquio","Victor","LOS","Cangallo"],
                 "zona_IV":["Villa Virgen", "Kimbiri"]
             }
         },
@@ -26,19 +26,19 @@
             "examen_I":{
                 "zona_I":["Huamanga"],
                 "zona_II":["Tambo","Chincheros","San Miguel"],
-                "zona_III":["Puquio","Fajardo","LOS","Cangallo"],
+                "zona_III":["Puquio","Victor","LOS","Cangallo"],
                 "zona_IV":["Villa Virgen", "Kimbiri"]
             },
             "examen_II": {
                 "zona_I":["Huamanga"],
                 "zona_II":["Tambo","Chincheros","San Miguel"],
-                "zona_III":["Puquio","Fajardo","LOS","Cangallo"],
+                "zona_III":["Puquio","Victor","LOS","Cangallo"],
                 "zona_IV":["Villa Virgen", "Kimbiri"]
             },
             "examen_III": {
                 "zona_I":["Huamanga"],
                 "zona_II":["Tambo","Chincheros","San Miguel"],
-                "zona_III":["Puquio","Fajardo","LOS","Cangallo"],
+                "zona_III":["Puquio","Victor","LOS","Cangallo"],
                 "zona_IV":["Villa Virgen", "Kimbiri"]
             }
         }
@@ -48,13 +48,13 @@
             "examen_I":{
                 "zona_I":["Huamanga"],
                 "zona_II":["Tambo","Chincheros","San Miguel"],
-                "zona_III":["Puquio","Fajardo","LOS","Cangallo"],
+                "zona_III":["Puquio","Victor","LOS","Cangallo"],
                 "zona_IV":["Villa Virgen", "Kimbiri"]
             },
             "examen_II":{
                 "zona_I":["Huamanga"],
                 "zona_II":["Tambo","Chincheros","San Miguel"],
-                "zona_III":["Puquio","Fajardo","LOS","Cangallo"],
+                "zona_III":["Puquio","Victor","LOS","Cangallo"],
                 "zona_IV":["Villa Virgen", "Kimbiri"]
             }
         }
