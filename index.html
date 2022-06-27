@@ -390,7 +390,7 @@
                 const value = form[llenos].value
                 sear += value + "/"
                 arr += value
-                if (llenos == 2) {
+                if (llenos == 3) {
                     llenos += 1
                     break
                     ""
@@ -398,7 +398,7 @@
                 llenos += 1
             }
 
-            if (llenos <= 2) {
+            if (llenos <= 3) {
                 sear += (form[llenos].value + "/" + form[llenos].value + ".json")
             } else {
                 sear += (form[llenos].value + ".json")
