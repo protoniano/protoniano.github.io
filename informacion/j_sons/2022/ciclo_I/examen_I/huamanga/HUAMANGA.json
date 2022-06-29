@@ -1,0 +1,114 @@
+{
+    "N_alumnos": 2650,
+    "suma_notas": 23960.799999999985,
+    "escuelas": {
+        "AGRONOMIA": {
+            "N_alumnos": 47,
+            "suma_notas": 330.2800000000002
+        },
+        "BIOLOGIA": {
+            "N_alumnos": 100,
+            "suma_notas": 885.5999999999999
+        },
+        "EDUCACION INICIAL": {
+            "N_alumnos": 33,
+            "suma_notas": 204.35999999999999
+        },
+        "EDUCACION PRIMARIA": {
+            "N_alumnos": 14,
+            "suma_notas": 84.55999999999997
+        },
+        "EDUCACION SECUNDARIA": {
+            "N_alumnos": 40,
+            "suma_notas": 319.7600000000001
+        },
+        "EDUCACION FISICA": {
+            "N_alumnos": 25,
+            "suma_notas": 142.12
+        },
+        "ADMINISTRACION DE EMPRESAS": {
+            "N_alumnos": 134,
+            "suma_notas": 1076.0399999999995
+        },
+        "CONTABILIDAD Y AUDITORIA": {
+            "N_alumnos": 98,
+            "suma_notas": 775.0400000000001
+        },
+        "ECONOMIA": {
+            "N_alumnos": 72,
+            "suma_notas": 560.6000000000001
+        },
+        "ANTROPOLOGIA SOCIAL": {
+            "N_alumnos": 17,
+            "suma_notas": 121.04
+        },
+        "ARQUEOLOGIA E HISTORIA": {
+            "N_alumnos": 13,
+            "suma_notas": 84.72
+        },
+        "TRABAJO SOCIAL": {
+            "N_alumnos": 150,
+            "suma_notas": 1229.84
+        },
+        "DERECHO": {
+            "N_alumnos": 401,
+            "suma_notas": 3852.360000000004
+        },
+        "ENFERMERIA": {
+            "N_alumnos": 169,
+            "suma_notas": 1307.3200000000002
+        },
+        "INGENIERIA DE MINAS": {
+            "N_alumnos": 47,
+            "suma_notas": 433.0000000000001
+        },
+        "INGENIERIA CIVIL": {
+            "N_alumnos": 355,
+            "suma_notas": 3787.759999999998
+        },
+        "INGENIERIA QUIMICA": {
+            "N_alumnos": 11,
+            "suma_notas": 77.55999999999999
+        },
+        "OBSTETRICIA": {
+            "N_alumnos": 75,
+            "suma_notas": 527.1200000000002
+        },
+        "INGENIERIA EN INDUSTRIAS ALIMENTARIAS": {
+            "N_alumnos": 14,
+            "suma_notas": 89.44000000000001
+        },
+        "FARMACIA Y BIOQUIMICA": {
+            "N_alumnos": 56,
+            "suma_notas": 451.0800000000001
+        },
+        "INGENIERIA AGRICOLA": {
+            "N_alumnos": 33,
+            "suma_notas": 291.4800000000001
+        },
+        "INGENIERIA AGROINDUSTRIAL": {
+            "N_alumnos": 12,
+            "suma_notas": 77.39999999999999
+        },
+        "CIENCIAS DE LA COMUNICACION": {
+            "N_alumnos": 28,
+            "suma_notas": 232.52
+        },
+        "MEDICINA VETERINARIA": {
+            "N_alumnos": 31,
+            "suma_notas": 223.83999999999997
+        },
+        "CIENCIAS FISICO-MATEMATICAS": {
+            "N_alumnos": 2,
+            "suma_notas": 14.08
+        },
+        "INGENIERIA DE SISTEMAS": {
+            "N_alumnos": 187,
+            "suma_notas": 1505.9199999999985
+        },
+        "MEDICINA HUMANA": {
+            "N_alumnos": 486,
+            "suma_notas": 5275.959999999996
+        }
+    }
+}
