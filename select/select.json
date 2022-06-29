@@ -14,6 +14,13 @@
                 "zona_II":["Tambo","Chincheros","San Miguel"],
                 "zona_III":["Villa Virgen", "Kimbiri"],
                 "zona_IV":["Pichari", "Samugari"]
+            },
+            "examen_III":{
+                "huamanga":["Huamanga"],
+                "zona_I":["Puquio","Victor","LOS","Cangallo"],
+                "zona_II":["Tambo","Chincheros","San Miguel"],
+                "zona_III":["Villa Virgen", "Kimbiri"],
+                "zona_IV":["Pichari", "Samugari"]
             }
         }
     }
