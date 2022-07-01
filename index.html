@@ -303,7 +303,8 @@
                 var zonas = Object.keys(respuesta[age_][ciclo_][value]).length
                 zona_select.appendChild(a_option("huamanga", "Huamanga"))
                 for (let i = 1; i < zonas; i++) {
-                    zona_select.appendChild(a_option("zona_"+romanos[i-1], "Zona "+romanos[i-1]))
+                    const rom = romanos[i-1]
+                    zona_select.appendChild(a_option("zona_"+rom, "Zona "+rom))
                 }
                 examen_ = value
             })
@@ -380,7 +381,7 @@
         
         //const xScale = d3.scaleLinear()
         //                .range(padding, w - padding)
-        const yScale = d3.scaleLinear()
+        const yScale = d3.scaleLinear().range([h - padding, padding])
                         
         sender.addEventListener("click", consoler)
 
@@ -450,9 +451,7 @@
                 listaDeValores.push(escuelas[key]['N_alumnos'])
             }
             
-            yScale.domain([0, d3.max(listaDeValores, (d)=>d)]).range([h - padding, padding])
-
-            
+            yScale.domain([0, d3.max(listaDeValores, (d)=>d)])
 
             if(svg_element.selectAll("rect")['_groups'][0].length != 0){
                 svg_element.selectAll("rect").remove()
