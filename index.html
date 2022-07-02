@@ -286,7 +286,9 @@
                 ciclo_ = value;
             })
 
-
+            //arregla esto en zona_selector al cambiar en examen_selector 
+            //lo que sigue es redundate ya que no cambia nada en las opciones de zona_selector
+            
             examen_select.addEventListener('change', function () {
                 const value = examen_select.value;
                 zona_select.selectedIndex = zona_select[0]
@@ -338,6 +340,7 @@
         //    baca.textContent = i;
         //    form[0].appendChild(baca)
         //}
+
 
         function a_option(value, textContent) {
             const option = document.createElement('option');
