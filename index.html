@@ -376,7 +376,7 @@
       //const escuelas = jsonFile.escuelas
       //let [a, e] = [1, 2]
       const escuelas = jsonFile['escuelas']
-      const lugar_list = Object.keys(jsonFile['lugar'])
+      const lugar_list = Object.keys(jsonFile['lugares'])
       const colores_por_lugar = {}
       
       for (let k = 0; k < lugar_list.length; k++) {
@@ -527,11 +527,11 @@
       const espacio = (w - padding * 2) / nombre_de_escuelas.length;
 
       //for (const key of nombre_de_escuelas) {
-      //  valores_de_las_escuelas.push(escuelas[key]["N_alumnos"]);
+      //  valores_de_las_escuelas.push(escuelas[key]["x_individuos"]);
       //}
 
       yScale
-        .domain([0, d3.max(valores_de_las_escuelas, (d) => d.N_alumnos)])
+        .domain([0, d3.max(valores_de_las_escuelas, (d) => d.x_individuos)])
 
       const axisLeft = d3.axisLeft(yScale);
 
@@ -560,7 +560,7 @@
       svg_element
         .select("#banana1")
         .selectAll("rect")
-        .data(valores_de_las_escuelas.map(d=>d.N_alumnos))
+        .data(valores_de_las_escuelas.map(d=>d.x_individuos))
         .join("rect")
         .attr("stroke", "none")
         .attr("height", (d) => h - yScale(d) - padding)
