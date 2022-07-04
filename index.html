@@ -2,538 +2,619 @@
 <html lang="es">
 
 <head>
-    
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta charset="utf-8">
-    <script type="text/javascript" src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="sp.js"></script>
+  <meta charset="utf-8" />
+  <script type="text/javascript" src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="sp.js"></script>
 
-    <link rel="icon" type="image/x-icon" href="fav.ico">
-    <style>
-        * {
-            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: rgb(200, 200, 200);
-        }
+  <link rel="icon" type="image/x-icon" href="fav.ico" />
+  <style>
+    * {
+      font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+        "Lucida Sans", Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: rgb(141 108 255);
+      color: black;
+    }
 
-        body {
-            /*< background: linear-gradient(90deg, rgb(125, 125, 255), rgb(175, 175, 255));*/
-        }
+    body {
+      /*< background: linear-gradient(90deg, rgb(125, 125, 255), rgb(175, 175, 255));*/
+    }
 
-        .bar {
-            transition-duration: 0.2s;
-        }
+    .bar {
+      transition-duration: 0.2s;
+    }
 
-        .bar:hover {
-            /*fill: rgba(255, 255, 255, 0.2);*/
-        }
+    .bar:hover {
+      /*fill: rgba(255, 255, 255, 0.2);*/
+    }
 
-        #sas {
-            /*background-color: rgb(116, 28, 230);*/
-            width: min-content;
-            margin: auto;
-        }
+    #sas {
+      /*background-color: rgb(116, 28, 230);*/
+      width: min-content;
+      margin: auto;
+    }
 
-        #bosque {
-            /*background-color: rgb(35, 214, 214);*/
-            border: 1px black solid;
-            border-bottom: none;
-        }
+    #bosque {
+      /*background-color: rgb(35, 214, 214);*/
+      border: 1px black solid;
+      border-bottom: none;
+    }
 
-        #divbutton {
-            /*background-color: rgb(125, 125, 255);*/
-            padding: 10px;
-        }
+    #divbutton {
+      /*background-color: rgb(125, 125, 255);*/
+      padding: 10px;
+    }
 
-        form {
-            /*background-color: rgb(196, 241, 104);*/
-            box-sizing: content-box;
-            padding: 10px;
-        }
+    form {
+      /*background-color: rgb(196, 241, 104);*/
+      box-sizing: content-box;
+      padding: 10px;
+    }
 
-        form li {
-            display: inline-block;
-            list-style: none;
-        }
+    form li {
+      display: inline-block;
+      list-style: none;
+    }
 
-        select {
-            width: 100px;
-            
-        }
+    select {
+      width: 100px;
+    }
 
-        .sas-div {
-            display: inline-block;
-            
-        }
+    .sas-div {
+      display: inline-block;
+    }
 
-        .hide_class {
-            display: none;
-        }
-    </style>
+    .hide_class {
+      display: none;
+    }
+  </style>
 </head>
 
 <body>
-    <main style="margin-top: 10px;">
-        <div id="sas">
-            <div id="bosque">
-                <div class="sas-div">
-                    <form id="forma">
-                        <ul>
-                            <li>
-                                <div>
-                                    <select name="age">
-                                        <option value=""></option>
-                                    </select>
-                                </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <select name="ciclo">
-                                        <option value=""></option>
-                                    </select>
-                                </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <select name="examen">
-                                        <option value=""></option>
-                                    </select>
-                                </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <select name="zona">
-                                        <option value=""></option>
-                                    </select>
-                                </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <select name="lugar" >
-                                        <option value=""></option>
-                                    </select>
-                                </div>
-                            </li>
-                        </ul>
-                    </form>
-
+  <main>
+    <div id="sas">
+      <div id="bosque">
+        <div class="sas-div">
+          <form id="forma">
+            <ul>
+              <li>
+                <div>
+                  <select name="age">
+                    <option value=""></option>
+                  </select>
                 </div>
-                <div class="sas-div">
-                    <div id="divbutton">
-                        <button id="sender">Try it</button>
-                    </div>
+              </li>
+              <li>
+                <div>
+                  <select name="ciclo">
+                    <option value=""></option>
+                  </select>
                 </div>
-            </div>
-            <svg id="svg_desplegador">
-                
-            </svg>
+              </li>
+              <li>
+                <div>
+                  <select name="examen">
+                    <option value=""></option>
+                  </select>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <select name="zona">
+                    <option value=""></option>
+                  </select>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <select name="lugar">
+                    <option value=""></option>
+                  </select>
+                </div>
+              </li>
+            </ul>
+          </form>
         </div>
-    </main>
+        <div class="sas-div">
+          <div id="divbutton">
+            <button id="sender">Try it</button>
+          </div>
+        </div>
+      </div>
+      <svg id="svg_desplegador"></svg>
+    </div>
+  </main>
 
-    <script>
-        //const form = (document.forms)[0]; select_inf
-        //const prom = new Promise()
-        const form = document.getElementById('forma')
-        const sender = document.getElementById('sender');
-        const age_select = form[0]
-        const ciclo_select = form[1]
-        const examen_select = form[2]
-        const zona_select = form[3]
-        const lugar_select = form[4]
+  <script>
+    //const form = (document.forms)[0]; select_inf
+    //const prom = new Promise()
+    const form = document.getElementById("forma");
+    const sender = document.getElementById("sender");
+    const age_select = form[0];
+    const ciclo_select = form[1];
+    const examen_select = form[2];
+    const zona_select = form[3];
+    const lugar_select = form[4];
 
-        const romanos = ["I", "II", "III", "IV", "V"]
-        const puestos = ["1°", "2°", "3°", "4°", "5°"]
+    const preferencias = ["rgb(200, 200, 100)", "rgb(200, 100, 100)", "rgb(100, 200, 100)", "rgb(100, 200, 200)", "rgb(200, 100, 200)"];
+    const romanos = ["I", "II", "III", "IV", "V"];
+    const puestos = ["1°", "2°", "3°", "4°", "5°"];
 
-        // const select_json_url = "masmas/select.json" no seria una peticion html sino una local 
-        const select_json_url = "https://protonianosaurio.github.io/select/select.json"
+    // const select_json_url = "masmas/select.json" no seria una peticion html sino una local
+    const select_json_url =
+      "https://protonianosaurio.github.io/select/select.json";
 
-        const select_example = document.createElement('select')
-        /*
-        const rquest = new XMLHttpRequest();
+    const select_example = document.createElement("select");
 
-        rquest.open('GET', select_json_url)
-        rquest.responseType = "json"
-        rquest.send()
+    const fetchPromise = fetch(select_json_url);
+    // response es el objeto que el servidor devuelva
 
-        rquest.onload = function () {
-            const respuesta = rquest.response
-            var aver_si_cambia = 0
-
-            for (i in respuesta) {
-                const option = document.createElement('option')
-                option.value = i
-                option.textContent = i
-                age_select.appendChild(option)
-            }
-            var age_ = ""
-            var ciclo_ = ""
-
-            age_select.addEventListener('change', function () {
-                const value = age_select.value
-                ciclo_select.selectedIndex = ciclo_select[0]
-                hide_examen_selector()
-                hide_zona_selector()
-                var ciclos = Object.keys(respuesta[value]).length
-                for (let i = 1; i < ciclo_select.length - 1; i++) {
-                    if (i <= ciclos) {
-                        //ciclo_select[i].removeAttribute("class")
-                        //ciclo_select[i].classList.remove("hide_class")
-                        ciclo_select[i].className = ""
-                    } else {
-                        //ciclo_select[i].classList.add("hide_class")
-                        ciclo_select[i].className = "hide_class"
-                    }
-                }
-                age_ = value
-            })
-
-            ciclo_select.addEventListener('change', function () {
-                const value = ciclo_select.value;
-                examen_select.selectedIndex = examen_select[0]
-                hide_zona_selector()
-
-                var examenes = Object.keys(respuesta[age_][value]).length
-                for (let i = 1; i < examen_select.length; i++) {
-                    if (i <= examenes) {
-                        examen_select[i].className = ""
-                    } else {
-                        examen_select[i].className = "hide_class"
-                    }
-                }
-                ciclo_ = value;
-            })
-
-            examen_select.addEventListener('change', function () {
-                const value = examen_select.value;
-                zona_select.selectedIndex = zona_select[0]
-
-                var zonas = respuesta[age_][ciclo_][value].length
-
-                for (let i = 1; i < zona_select.length; i++) {
-                    if (i <= zonas) {
-                        zona_select[i].className = ""
-                    } else {
-                        zona_select[i].className = "hide_class"
-                    }
-                }
-            })
+    fetchPromise
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`tadadesc ${response}`);
         }
-        */
+        return response.json();
+      })
+      .then((response) => {
+        const respuesta = response;
+        console.log(respuesta);
+        for (i in respuesta) {
+          const option = document.createElement("option");
+          option.value = i;
+          option.textContent = i;
+          age_select.appendChild(option);
+        }
+        var age_ = "";
+        var ciclo_ = "";
+        var examen_ = "";
+        var zona_ = "";
 
-        const fetchPromise = fetch(select_json_url);
-        // response es el objeto que el servidor devuelva
-        
-        fetchPromise.then(response => {
+        age_select.addEventListener("change", function () {
+          const value = age_select.value;
+          ciclo_select.selectedIndex = ciclo_select[0]; // PONE LA SIGUIENTE CASILLA EN BLANCO
+
+          if (ciclo_select.length != 1) {
+            for (let i = ciclo_select.length - 1; i > 0; i--) {
+              const element = ciclo_select[i];
+              element.remove();
+            }
+          }
+
+          hide_examen_selector();
+          hide_zona_selector();
+          hide_lugar_selector();
+
+          var ciclos = Object.keys(respuesta[value]).length;
+          for (let i = 0; i < ciclos; i++) {
+            ciclo_select.appendChild(
+              a_option("ciclo_" + romanos[i], "Ciclo " + romanos[i])
+            );
+          }
+          age_ = value;
+        });
+
+        ciclo_select.addEventListener("change", function () {
+          const value = ciclo_select.value;
+          examen_select.selectedIndex = examen_select[0];
+
+          exa_sele_length = examen_select.length;
+          if (exa_sele_length != 1) {
+            for (let i = exa_sele_length - 1; i > 0; i--) {
+              const element = examen_select[i];
+              element.remove();
+            }
+          }
+          hide_zona_selector();
+          hide_lugar_selector();
+
+          var examenes = Object.keys(respuesta[age_][value]).length;
+          for (let i = 0; i < examenes; i++) {
+            examen_select.appendChild(
+              a_option("examen_" + romanos[i], puestos[i] + " Examen")
+            );
+          }
+          ciclo_ = value;
+        });
+
+        examen_select.addEventListener("change", function () {
+          const value = examen_select.value;
+          zona_select.selectedIndex = zona_select[0];
+
+          zona_select_length = zona_select.length;
+          if (zona_select_length != 1) {
+            for (let i = zona_select.length - 1; i > 0; i--) {
+              zona_select[i].remove();
+            }
+          }
+
+          hide_lugar_selector();
+
+          var zonas = Object.keys(respuesta[age_][ciclo_][value]).length;
+          zona_select.appendChild(a_option("huamanga", "Huamanga"));
+          for (let i = 1; i < zonas; i++) {
+            zona_select.appendChild(
+              a_option("zona_" + romanos[i - 1], "Zona " + romanos[i - 1])
+            );
+          }
+          examen_ = value;
+        });
+
+        zona_select.addEventListener("change", function () {
+          const value = zona_select.value;
+          lugar_select.selectedIndex = lugar_select[0];
+
+          lugar_select_length = lugar_select.length;
+          if (lugar_select_length != 1) {
+            for (let i = lugar_select_length - 1; i > 0; i--) {
+              lugar_select[i].remove();
+            }
+          }
+
+          lugares = respuesta[age_][ciclo_][examen_][value];
+
+          for (let i = 0; i < lugares.length; i++) {
+            lugar_select.appendChild(a_option(lugares[i], lugares[i]));
+          }
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    //for(i in select_inf){
+    //    let baca = document.createElement("option")
+    //    baca.value = i;
+    //    baca.textContent = i;
+    //    form[0].appendChild(baca)
+    //}
+
+    function a_option(value, textContent) {
+      const option = document.createElement("option");
+      option.value = value;
+      option.textContent = textContent;
+      return option;
+    }
+
+    function hide_examen_selector() {
+      examen_select.selectedIndex = examen_select[0];
+      for (let i = 1; i < examen_select.length; i++) {
+        examen_select[i].className = "hide_class";
+      }
+    }
+    function hide_zona_selector() {
+      zona_select.selectedIndex = zona_select[0];
+      for (let i = 1; i < zona_select.length; i++) {
+        zona_select[i].className = "hide_class";
+      }
+    }
+    function hide_lugar_selector() {
+      lugar_select.selectedIndex = lugar_select[0];
+      for (let i = 1; i < lugar_select.length; i++) {
+        lugar_select[i].className = "hide_class";
+      }
+    }
+  </script>
+  <script>
+    let lastSelected = "";
+
+    const k = 40;
+    const w = 16 * k;
+    const h = 9 * k;
+    const padding = 40;
+    const escc = 5;
+    const svg = d3
+      .select("#svg_desplegador")
+      .attr("width", w)
+      .attr("height", h)
+      .style("border", "1px black solid");
+    //.style("background", "rgb(125, 125, 255)")
+
+    const yScale = d3.scaleLinear().range([h - padding, padding]);
+
+
+    sender.addEventListener("click", desplegador);
+
+    //svg.append("rect")
+    //    .attr("stroke", "black")
+    //    .attr("fill", "none")
+    //    .attr("x", padding)
+    //    .attr("y", padding)
+    //    .attr("width", w - padding*2)
+    //    .attr("height", h - padding*2)
+
+    function desplegador() {
+      var selected = "";
+      var sear = "https://protonianosaurio.github.io/informacion/j_sons/";
+
+      let llenos = 0;
+      while (form[llenos + 1].value != "") {
+        const value = form[llenos].value;
+        sear += value + "/";
+        selected += value;
+        if (llenos == 3) {
+          llenos += 1;
+          break;
+          ("");
+        }
+        llenos += 1;
+      }
+
+      if (llenos <= 3) {
+        sear += form[llenos].value + ".json";
+      } else {
+        sear += form[llenos].value.toUpperCase() + ".json";
+      }
+
+      selected += form[llenos].value;
+      if (lastSelected !== selected) {
+        lastSelected = selected;
+        console.log(sear);
+
+        const fechPromise = fetch(sear);
+        fechPromise
+          .then((response) => {
             if (!response.ok) {
-                throw new Error(`tadadesc ${response}`)
+              throw new Error(response.status);
             }
-            return response.json()
-        }).then(response => {
-            const respuesta = response
-            console.log(respuesta)
-            for (i in respuesta) {
-                const option = document.createElement('option')
-                option.value = i
-                option.textContent = i
-                age_select.appendChild(option)
-            }
-            var age_ = ""
-            var ciclo_ = ""
-            var examen_ = ""
-            var zona_ = ""
+            return response.json();
+          })
+          .then((json) => {
+            if(llenos == 4){
+              crearGrafico_para_subzonas(svg, json)
+            }else{
+              crearGrafico_para_zonas_por_cantidad(svg, json)
+            } 
+          })
+          .catch((error) => {
+            console.error(`Could not get products: ${error}`);
+          });
+      }
+    }
+    function crearGrafico_para_zonas_por_cantidad(svg_element, jsonFile) {
+      //const escuelas = jsonFile.escuelas
+      //let [a, e] = [1, 2]
+      const escuelas = jsonFile['escuelas']
+      const lugar_list = Object.keys(jsonFile['lugar'])
+      const colores_por_lugar = {}
+      
+      for (let k = 0; k < lugar_list.length; k++) {
+        colores_por_lugar[lugar_list[k]] = preferencias[k]
+      }
 
-            age_select.addEventListener('change', function () {
-                const value = age_select.value
-                ciclo_select.selectedIndex = ciclo_select[0]
+      /*  
+      a_escuela = {
+            "MOROCHUCOS":{
+                           "x_individuos": 3,
+                           "nota": 13.52},
+            "CANGALLO": {
+                            "x_individuos": 1,
+                            "nota": 4.6
+                        },
+            "PUQUIO":   {
+                            "x_individuos": 1,
+                            "nota": 3.28}
+                  }
 
-                if(ciclo_select.length != 1){
-                    for (let i = ciclo_select.length-1; i > 0; i--) {
-                        const element = ciclo_select[i];
-                        element.remove()
-                    }
-                }
-
-                hide_examen_selector()
-                hide_zona_selector()
-                hide_lugar_selector()
-
-                var ciclos = Object.keys(respuesta[value]).length
-                for (let i = 0; i < ciclos; i++) {
-                    ciclo_select.appendChild(a_option("ciclo_" + romanos[i],"Ciclo "+ romanos[i]))
-                }
-                age_ = value
-            })
-
-            ciclo_select.addEventListener('change', function () {
-                const value = ciclo_select.value;
-                examen_select.selectedIndex = examen_select[0]
-
-                exa_sele_length = examen_select.length
-                if(exa_sele_length != 1){
-                    for (let i = exa_sele_length - 1; i > 0; i--) {
-                        const element = examen_select[i];
-                        element.remove()
-                    }
-                }
-                hide_zona_selector()
-                hide_lugar_selector()
-
-                var examenes = Object.keys(respuesta[age_][value]).length
-                for (let i = 0; i < examenes; i++) {
-                    examen_select.appendChild(a_option("examen_"+romanos[i], puestos[i]+" Examen"))
-                }
-                ciclo_ = value;
-            })
-
-            //arregla esto en zona_selector al cambiar en examen_selector 
-            //lo que sigue es redundate ya que no cambia nada en las opciones de zona_selector
+       v_r = [{"MOROCHUCOS":{"x_individuos": 3,"nota": 13.52},"CANGALLO":{"x_individuos": 1,"nota": 3.52}}
+              ,{"PUQUIO":{"x_individuos": 3,"nota": 13.52},"LOS":{"x_individuos": 1,"nota": 3.52}}]
+           |---------------------------------valor de una escuela-----------------------------------------|
+      */
             
-            examen_select.addEventListener('change', function () {
-                const value = examen_select.value;
-                zona_select.selectedIndex = zona_select[0]
+      const valores_relativos_a_nombres_de_escuelas = Object.values(escuelas)
+      const espacio = (w - padding * 2) / valores_relativos_a_nombres_de_escuelas.length;
 
-                zona_select_length = zona_select.length
-                if(zona_select_length != 1){
-                    for(let i = zona_select.length-1;i > 0; i--){
-                        zona_select[i].remove()
-                    }
-                }
+      const valores_individuos = d3.max(valores_relativos_a_nombres_de_escuelas.map((d)=>{
+            let suma = 0
+            const values = Object.values(d)
+            for (let i = 0; i < values.length; i++) {
+              suma += values[i].x_individuos
+            }
+            return suma
+        }))
+                  
+      yScale.domain([0, valores_individuos])
 
-                hide_lugar_selector()
+      const axisLeft = d3.axisLeft(yScale);
+      
+      /*
+        const colores = {
+          "CANGALLO": "rgb(200, 50, 50)",
+          "LOS": "rgb(50, 200, 50)",
+          "PUQUIO": "rgb(50, 50, 200)",
+          "VICTOR": "rgb(255, 50, 255)"
+        }
+        data(d3.range(3))
 
-                var zonas = Object.keys(respuesta[age_][ciclo_][value]).length
-                zona_select.appendChild(a_option("huamanga", "Huamanga"))
-                for (let i = 1; i < zonas; i++) {
-                    const rom = romanos[i-1]
-                    zona_select.appendChild(a_option("zona_"+rom, "Zona "+rom))
-                }
-                examen_ = value
-            })
-
-            zona_select.addEventListener('change',function () {
-                const value = zona_select.value
-                lugar_select.selectedIndex = lugar_select[0]
-
-                lugar_select_length = lugar_select.length;
-                if(lugar_select_length != 1){
-                    for(let i = lugar_select_length - 1 ; i > 0; i--){
-                        lugar_select[i].remove()
-                    }
-                }
-
-                lugares = respuesta[age_][ciclo_][examen_][value]
-                
-                for (let i = 0; i < lugares.length; i++) {
-                    lugar_select.appendChild(a_option(lugares[i],lugares[i]))
-                }
-                
-            })
-
-        }).catch(error => {
-            console.log(error)
+              d3.select("#svg_desplegador")
+        .selectAll("g")
+        .data([[10, 20, 30], [60, 40, 20]])
+        .join("g")
+        .attr("transform", (d, i)=>{
+          let suma = 0;
+          for (const valor of d) {
+            suma += valor
+          }
+          return "translate(" + i*22 + "," +scaler(suma) + ")"
         })
-
-        //for(i in select_inf){
-        //    let baca = document.createElement("option")
-        //    baca.value = i;
-        //    baca.textContent = i;
-        //    form[0].appendChild(baca)
-        //}
-
-
-        function a_option(value, textContent) {
-            const option = document.createElement('option');
-            option.value = value
-            option.textContent = textContent
-            return option
-        }
-
-        function hide_examen_selector() {
-            examen_select.selectedIndex = examen_select[0]
-            for (let i = 1; i < examen_select.length; i++) {
-                examen_select[i].className = "hide_class"
+        .selectAll("rect")
+        .data(d=>d)
+        .join("rect")
+        .attr("x", 0)
+        .attr("width", 20)
+        .attr("height", d=>d)
+        .attr("y", (d, i, rects)=>{
+          let new_y = 0;
+          if(i != 0){
+            for (let j = 0; j < i; j++) {
+              new_y = new_y + (parseInt(rects[j].getAttribute("height"), 10))
             }
-        }
-        function hide_zona_selector() {
-            zona_select.selectedIndex = zona_select[0]
-            for (let i = 1; i < zona_select.length; i++) {
-                zona_select[i].className = "hide_class"
-            }
-        }
-        function hide_lugar_selector() {
-            lugar_select.selectedIndex = lugar_select[0]
-            for (let i = 1; i < lugar_select.length; i++) {
-                lugar_select[i].className = "hide_class"
-            }
-        }
-    </script>
-    <script>
-        let lastSelected = ""
+            return new_y;
+          }
+          return 0;
+        })
+        .attr("fill",d=>"rgb("+Math.floor(Math.random()*255)+", 255, "+Math.floor(Math.random()*255)+")")
+      */
 
-        const k = 40;
-        const w = 16 * k;
-        const h = 9 * k;
-        const padding = 40;
-        const escc = 5
-        const svg = d3.select('#svg_desplegador')
-            .attr("width", w)
-            .attr("height", h)
-            .style("border", "1px black solid")
-            //.style("background", "rgb(125, 125, 255)")
+      svg_element.select('#banana1').selectAll("rect").remove()
+      svg_element.selectAll("g").data([0,1]).join("g").attr("id",(d) =>"banana"+d)
+
+      svg_element
+        .append('g')
+        .attr("transform", "translate(" + (padding - 10) + ",0)")
+        .call(axisLeft)
+
+      svg_element
+        .select('#banana1')
+        .selectAll("g")
+        .data(valores_relativos_a_nombres_de_escuelas)
+        .join("g")
+        .attr("transform", (d, i) => {
+          let suma = 0
+          const valores = Object.values(d).map(q=>q.x_individuos)
+          for (const item of valores) {
+            suma += item
+          }
+          return "translate(" +(i*espacio + padding) + ","+yScale(suma)+")"
+        })
+        .selectAll("rect")
+        .data((d) => {
+          const keys = Object.keys(d);
+          const values = Object.values(d);
+          let lista = keys.map((d, i) => {
+            let dict = {}
+            dict[d] = values[i]
+            return dict
+          })
+          return lista
+        })
+        .join("rect")
+        .attr("height", (d) => {
+          return h - padding - yScale(Object.values(d)[0].x_individuos) 
+        })
+        .attr("width", (d) => {
+          return espacio - 5
+        })
+        .attr("y", (d, i, rects) => {
+          let new_y = 0
+          if (i != 0) {
+            for (let j = 0; j < i; j++) {
+              new_y += parseInt(rects[j].getAttribute("height"), 10)
+            }
+            return new_y ;
+          }
+          return 0;
+        })
+        .attr("stroke", (d, i) => {
+          return colores_por_lugar[Object.keys(d)[0]]
+        })
+        .attr("fill", (d, i) => {
+          return colores_por_lugar[Object.keys(d)[0]]
+        })
+        .append("title")
+        .text((d) => {
+          return Object.keys(d)[0]
+        })
+    }
+
+    function crearGrafico_para_subzonas(svg_element, jsonFile) {
+
+      const escuelas = jsonFile["escuelas"];
+      let nombre_de_escuelas = Object.keys(escuelas);
+      let valores_de_las_escuelas = Object.values(escuelas);
+
+      const espacio = (w - padding * 2) / nombre_de_escuelas.length;
+
+      //for (const key of nombre_de_escuelas) {
+      //  valores_de_las_escuelas.push(escuelas[key]["N_alumnos"]);
+      //}
+
+      yScale
+        .domain([0, d3.max(valores_de_las_escuelas, (d) => d.N_alumnos)])
+
+      const axisLeft = d3.axisLeft(yScale);
+
+      //if (svg_element.selectAll("rect")["_groups"][0].length != 0) {
+
+      
+
+      /*
+      porque no funciona
+      const banana0 = svg_element.select("#banana0")
         
-        //const xScale = d3.scaleLinear()
-        //                .range(padding, w - padding)
-        const yScale = d3.scaleLinear().range([h - padding, padding])
-                        
-        sender.addEventListener("click", consoler)
+      banana0
+        .append("g")
+        .attr("transform", "translate(" + (padding - 10) + ",0)")
+        .call(axisLeft)
+      */
+      //esto elimina rects al igual que lo que tiene cada uno dentro
+      svg_element.select('#banana1').selectAll("rect").remove()
+      svg_element.selectAll("g").data([0,1]).join("g").attr("id",(d) =>"banana"+d)
 
-        svg.append("g")
-            .attr("id", "vaca")
-        
-        //svg.append("rect")
-        //    .attr("stroke", "black")
-        //    .attr("fill", "none")
-        //    .attr("x", padding)
-        //    .attr("y", padding)
-        //    .attr("width", w - padding*2)
-        //    .attr("height", h - padding*2)
+      svg_element
+        .append("g")
+        .attr("transform", "translate(" + (padding - 10) + ",0)")
+        .call(axisLeft)
 
+      svg_element
+        .select("#banana1")
+        .selectAll("rect")
+        .data(valores_de_las_escuelas.map(d=>d.N_alumnos))
+        .join("rect")
+        .attr("stroke", "none")
+        .attr("height", (d) => h - yScale(d) - padding)
+        .attr("width", (d) => espacio - 5)
+        .attr("x", (d, i) => padding + i * espacio)
+        .attr("y", (d) => yScale(d))
+        .append("title")
+        .text((d, i) => nombre_de_escuelas[i] + d);
 
+    }
+  </script>
+  <script>
+      //var database = [53, 64, 98, 74, 61, 34, 39, 10, 15, 160, 5];
+      //    database = acomodador(database, 0);
+      //
+      //
+      //svg.selectAll("rect")
+      //    .data(database)
+      //    .enter()
+      //    .append("rect")
+      //    .attr("class", "bar")
+      //    .attr("fill", "rgba(255, 255, 255, 0.5")
+      //    .attr("width", 35)
+      //    .attr("height", (d) => d * 1.5)
+      //    .attr("x", (d, i) => i * 40 + padding + 60)
+      //    .attr("y", (d) => h - (d * 1.5 + padding))
+      //    .append("title")
+      //    .text((d) => d)
+      //
+      //
+      //svg.selectAll("text")
+      //    .data(database)
+      //    .enter()
+      //    .append("text")
+      //    .text((d) => d)
+      //    .attr("x", (d, i) => {
+      //        var ds = (d + "");
+      //        if (ds.length >= 3) {
+      //            return i * 40 + padding + 5 + 60
+      //        } else if (ds.length === 2) {
+      //            return i * 40 + padding + 10 + 60
+      //        } else {
+      //            return i * 40 + padding + 16 + 60
+      //        }
+      //    })
+      //    .attr("y", (d) => h - (d * 1.5 + padding) - 5)
 
-        function consoler() {
-            var selected = ""
-            var sear = "https://protonianosaurio.github.io/informacion/j_sons/"
-            
-            let llenos = 0
-            while (form[llenos + 1].value != "") {
-                const value = form[llenos].value
-                sear += value + "/"
-                selected += value
-                if (llenos == 3) {
-                    llenos += 1
-                    break
-                    ""
-                }
-                llenos += 1
-            }
-            
-            if (llenos <= 3) {
-                sear += (form[llenos].value + "/" + form[llenos].value + ".json")
-            } else {
-                sear += (form[llenos].value.toUpperCase() + ".json")
-            }
-
-            selected += form[llenos].value
-            if (lastSelected !== selected) {
-                lastSelected = selected
-                console.log(sear)
-
-                const fechPromise = fetch(sear)
-                fechPromise.then(response =>{
-                    if(!response.ok){
-                        throw new Error(response.status);
-                    }
-                    return response.json();
-                }).then(json =>{
-                    crearGrafico(svg.select("#vaca"), json)
-                }).catch(error =>{
-                    console.error(`Could not get products: ${error}`);
-                })
-            }
-        }
-
-        function crearGrafico(svg_element, jsonFile) {
-            const escuelas = jsonFile['escuelas']
-            let lista = Object.keys(escuelas)
-            let listaDeValores = Array()
-            const espacio = (w - padding * 2) / (lista.length)
-            
-
-            for (const key of lista) {
-                listaDeValores.push(escuelas[key]['N_alumnos'])
-            }
-            
-            yScale.domain([0, d3.max(listaDeValores, (d)=>d)])
-
-            if(svg_element.selectAll("rect")['_groups'][0].length != 0){
-                svg_element.selectAll("rect").remove()
-                svg_element.select("g").remove()
-                //svg_element.selectAll("text").remove()
-            }
-            const axisLeft = d3.axisLeft(yScale)
-
-            svg_element.append("g")
-                .attr("transform", "translate("+(padding-10)+",0)")
-                .call(axisLeft)
-
-            svg_element.selectAll("rect")
-                .data(listaDeValores)
-                .enter()
-                .append("rect")
-                .attr("stroke", "rgba(0, 0, 0")
-                .attr("height", (d) => h - yScale(d) - padding)
-                .attr("width", (d)=> espacio - 5)
-                .attr("x", (d, i)=> padding + i * (espacio))
-                .attr("y", (d)=>  (yScale(d)))
-                .append("title")
-                .text((d,i)=>lista[i]+d)
-
-            //svg_element.selectAll("text")
-            //    .data(listaDeValores)
-            //    .enter()
-            //    .append("text")
-            //    .attr("x", (d, i)=> padding + i * (espacio))
-            //    .attr("y", (d)=> h - (d * escc + padding))
-            //    .text((d,i)=>lista[i])
-        }
-
-    </script>
-    <script>
-
-        //var database = [53, 64, 98, 74, 61, 34, 39, 10, 15, 160, 5];
-        //    database = acomodador(database, 0);
-        //
-//
-        //svg.selectAll("rect")
-        //    .data(database)
-        //    .enter()
-        //    .append("rect")
-        //    .attr("class", "bar")
-        //    .attr("fill", "rgba(255, 255, 255, 0.5")
-        //    .attr("width", 35)
-        //    .attr("height", (d) => d * 1.5)
-        //    .attr("x", (d, i) => i * 40 + padding + 60)
-        //    .attr("y", (d) => h - (d * 1.5 + padding))
-        //    .append("title")
-        //    .text((d) => d)
-//
-//
-        //svg.selectAll("text")
-        //    .data(database)
-        //    .enter()
-        //    .append("text")
-        //    .text((d) => d)
-        //    .attr("x", (d, i) => {
-        //        var ds = (d + "");
-        //        if (ds.length >= 3) {
-        //            return i * 40 + padding + 5 + 60
-        //        } else if (ds.length === 2) {
-        //            return i * 40 + padding + 10 + 60
-        //        } else {
-        //            return i * 40 + padding + 16 + 60
-        //        }
-        //    })
-        //    .attr("y", (d) => h - (d * 1.5 + padding) - 5)
-
-
-        //svg.append("path")
-        //    .attr("fill", "none")
-        //    .attr("stroke", "black")
-        //    .attr("stroke-width", 1.5)
-        //    .attr("stroke-miterlimit", 1)
-        //    .attr("d", masonte(database, h-30))
-    </script>
+      //svg.append("path")
+      //    .attr("fill", "none")
+      //    .attr("stroke", "black")
+      //    .attr("stroke-width", 1.5)
+      //    .attr("stroke-miterlimit", 1)
+      //    .attr("d", masonte(database, h-30))
+  </script>
 </body>
 
 </html>
