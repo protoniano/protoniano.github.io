@@ -117,5 +117,76 @@
                 "zona_IV":["Pichari", "Samugari"]
             }
         }
+    },
+    "2024": {
+        "ciclo_I": {
+            "examen_I":{
+                "huamanga":["Huamanga"],
+                "zona_I":["Puquio","Victor","LOS","Cangallo"],
+                "zona_II":["Tambo","Chincheros","San Miguel"],
+                "zona_III":["Villa Virgen", "Kimbiri"],
+                "zona_IV":["Pichari", "Samugari"]
+            },
+            "examen_II":{
+                "huamanga":["Huamanga"],
+                "zona_I":["Puquio","Victor","LOS","Cangallo"],
+                "zona_II":["Tambo","Chincheros","San Miguel"],
+                "zona_III":["Villa Virgen", "Kimbiri"],
+                "zona_IV":["Pichari", "Samugari"]
+            },
+            "examen_III":{
+                "huamanga":["Huamanga"],
+                "zona_I":["Puquio","Victor","Morochucos","Cangallo"],
+                "zona_II":["Tambo","Chincheros","San Miguel"],
+                "zona_III":["Villa Virgen", "Kimbiri"],
+                "zona_IV":["Pichari", "Samugari"]
+            }
+        },
+      "ciclo_II": {
+            "examen_I":{
+                "huamanga":["Huamanga"],
+                "zona_I":["Puquio","Victor","LOS","Cangallo"],
+                "zona_II":["Tambo","Chincheros","San Miguel"],
+                "zona_III":["Villa Virgen", "Kimbiri"],
+                "zona_IV":["Pichari", "Samugari"]
+            },
+            "examen_II":{
+                "huamanga":["Huamanga"],
+                "zona_I":["Puquio","Victor","LOS","Cangallo"],
+                "zona_II":["Tambo","Chincheros","San Miguel"],
+                "zona_III":["Villa Virgen", "Kimbiri"],
+                "zona_IV":["Pichari", "Samugari"]
+            },
+            "examen_III":{
+                "huamanga":["Huamanga"],
+                "zona_I":["Puquio","Victor","Morochucos","Cangallo"],
+                "zona_II":["Tambo","Chincheros","San Miguel"],
+                "zona_III":["Villa Virgen", "Kimbiri"],
+                "zona_IV":["Pichari", "Samugari"]
+            }
+        },
+      "ciclo_III": {
+            "examen_I":{
+                "huamanga":["Huamanga"],
+                "zona_I":["Puquio","Victor","LOS","Cangallo"],
+                "zona_II":["Tambo","Chincheros","San Miguel"],
+                "zona_III":["Villa Virgen", "Kimbiri"],
+                "zona_IV":["Pichari", "Samugari"]
+            },
+            "examen_II":{
+                "huamanga":["Huamanga"],
+                "zona_I":["Puquio","Victor","LOS","Cangallo"],
+                "zona_II":["Tambo","Chincheros","San Miguel"],
+                "zona_III":["Villa Virgen", "Kimbiri"],
+                "zona_IV":["Pichari", "Samugari"]
+            },
+            "examen_III":{
+                "huamanga":["Huamanga"],
+                "zona_I":["Puquio","Victor","Morochucos","Cangallo"],
+                "zona_II":["Tambo","Chincheros","San Miguel"],
+                "zona_III":["Villa Virgen", "Kimbiri"],
+                "zona_IV":["Pichari", "Samugari"]
+            }
+        }
     }
 }
