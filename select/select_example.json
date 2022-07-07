@@ -4,12 +4,13 @@
             "examen_I":{
                 "huamanga":["Huamanga"],
                 "zona_I":["Puquio","Victor","LOS","Cangallo"],
+                "zona_II":["Tambo","Chincheros","San Miguel"]
             },
             "examen_II":{
                 "huamanga":["Huamanga"],
                 "zona_I":["Puquio","Victor","LOS","Cangallo"],
                 "zona_II":["Tambo","Chincheros","San Miguel"],
-                "zona_III":["Villa Virgen", "Kimbiri"],
+                "zona_III":["Villa Virgen", "Kimbiri"]
             },
             "examen_III":{
                 "huamanga":["Huamanga"],
