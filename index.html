@@ -2,6 +2,7 @@
 <html lang="es">
 
 <head>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta charset="utf-8" />
   <script type="text/javascript" src="https://d3js.org/d3.v7.min.js"></script>
   <script src="sp.js"></script>
@@ -13,12 +14,12 @@
         "Lucida Sans", Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: rgb(141 108 255);
-      color: black;
+      color: hwb(0deg 100% 0% / 56%);
     }
 
     body {
       /*< background: linear-gradient(90deg, rgb(125, 125, 255), rgb(175, 175, 255));*/
+      background: linear-gradient(90deg,rgb(59 68 129), rgb(93, 92, 165))
     }
 
     .bar {
@@ -59,6 +60,18 @@
 
     select {
       width: 100px;
+      background: rgb(59 68 129);
+      border-style:none ;
+    }
+
+    #sender{
+      border-style: none;
+      background: rgb(59 68 129);
+      padding:2px;
+    }
+
+    #sender:hover{
+      background: rgb(77, 89, 168);
     }
 
     .sas-div {
@@ -67,6 +80,15 @@
 
     .hide_class {
       display: none;
+    }
+
+    .example_div {
+      width: 50px;
+      height: 50px;
+      background-color: blueviolet;
+    }
+    .leyenda{
+      font-size: 10px;
     }
   </style>
 </head>
@@ -158,14 +180,19 @@
         return response.json();
       })
       .then((response) => {
-        const respuesta = response;
-        console.log(respuesta);
-        for (i in respuesta) {
+
+        const respuesta_select = response;
+        console.log(respuesta_select);
+
+        for (i in respuesta_select) {
           const option = document.createElement("option");
           option.value = i;
           option.textContent = i;
           age_select.appendChild(option);
         }
+
+        let graficos_anteriores = Array()
+
         var age_ = "";
         var ciclo_ = "";
         var examen_ = "";
@@ -175,23 +202,40 @@
           const value = age_select.value;
           ciclo_select.selectedIndex = ciclo_select[0]; // PONE LA SIGUIENTE CASILLA EN BLANCO
 
-          if (ciclo_select.length != 1) {
-            for (let i = ciclo_select.length - 1; i > 0; i--) {
-              const element = ciclo_select[i];
-              element.remove();
+          if (value != "") {
+
+            const ciclos = Object.keys(respuesta_select[value])
+
+            const ciclo_select_options = ciclo_select.length - 1
+            const ciclos_size = ciclos.length;
+            const long = ciclos_size + ciclo_select_options
+            
+            if (ciclos_size >= ciclo_select_options) {
+              for (let i = 0; i < long; i++) {
+                if (i < ciclo_select_options) {
+                  ciclo_select[i+1].value = ciclos[i]
+                  ciclo_select[i+1].textContent = "Ciclo "+romanos[i]
+                }else if(i < ciclos_size){
+                  ciclo_select.appendChild(a_option(ciclos[i], "Ciclo "+romanos[i]))
+                }
+              }
+            }else{
+              for (let i = 0; i < long; i++) {
+                if (i < ciclos_size) {
+                  ciclo_select[i+1].value = ciclos[i]
+                  ciclo_select[i+1].textContent = "Ciclo "+romanos[i]
+                }else if(i < ciclo_select_options ){
+                  ciclo_select.removeChild(ciclo_select[i+1])
+                }
+              }
             }
+          }else{
+            d3.select(ciclo_select).selectAll("option").filter((d, i) => i != 0).remove()
+            hide_examen_selector()
+            hide_lugar_selector()
+            hide_zona_selector()
           }
 
-          hide_examen_selector();
-          hide_zona_selector();
-          hide_lugar_selector();
-
-          var ciclos = Object.keys(respuesta[value]).length;
-          for (let i = 0; i < ciclos; i++) {
-            ciclo_select.appendChild(
-              a_option("ciclo_" + romanos[i], "Ciclo " + romanos[i])
-            );
-          }
           age_ = value;
         });
 
@@ -199,22 +243,22 @@
           const value = ciclo_select.value;
           examen_select.selectedIndex = examen_select[0];
 
-          exa_sele_length = examen_select.length;
-          if (exa_sele_length != 1) {
-            for (let i = exa_sele_length - 1; i > 0; i--) {
-              const element = examen_select[i];
-              element.remove();
-            }
-          }
-          hide_zona_selector();
-          hide_lugar_selector();
+          const examen_options =  d3.select(examen_select)
+                                    .selectAll("option")
+                                    .filter((d, i) =>  i!=0)
 
-          var examenes = Object.keys(respuesta[age_][value]).length;
-          for (let i = 0; i < examenes; i++) {
-            examen_select.appendChild(
-              a_option("examen_" + romanos[i], puestos[i] + " Examen")
-            );
+          if(value != ""){
+              examen_options.data(Object.keys(respuesta_select[age_][value]))
+                            .join("option")
+                            .attr("class", " ")
+                            .text((d,i) => puestos[i]+" Examen")
+                            .attr("value",d => d)
+          }else{
+            examen_options.attr("class", "hide_class")
+            hide_zona_selector();
+            hide_lugar_selector();
           }
+
           ciclo_ = value;
         });
 
@@ -222,22 +266,40 @@
           const value = examen_select.value;
           zona_select.selectedIndex = zona_select[0];
 
-          zona_select_length = zona_select.length;
-          if (zona_select_length != 1) {
-            for (let i = zona_select.length - 1; i > 0; i--) {
-              zona_select[i].remove();
+          if(value != ""){
+            
+            const zonas = Object.keys(respuesta_select[age_][ciclo_][value])
+            const zona_select_size = zona_select.length - 1
+            const zonas_size = zonas.length
+
+            const iterations = zonas_size + zona_select_size
+
+            if(zonas_size >= zona_select_size){
+              for (let i = 0; i < iterations; i++) {
+                if(i < zona_select_size){
+                  zona_select[i+1].textContent = zonas[i]
+                  zona_select[i+1].value = zonas[i]
+                  zona_select[i+1].className = " "
+                }else if(i < zonas_size){
+                  zona_select.appendChild(a_option(zonas[i], zonas[i]))
+                }
+              }
+            }else{
+              for (let i = 0; i < iterations; i++) {
+                if(i < zonas_size){
+                  zona_select[i+1].textContent = zonas[i]
+                  zona_select[i+1].value = zonas[i]
+                  zona_select[i+1].className = " "
+                }else if(i < zona_select_size){
+                  zona_select.removeChild(zona_select[i])
+                }
+              }
             }
+          }else{
+            hide_zona_selector();
+            hide_lugar_selector();
           }
 
-          hide_lugar_selector();
-
-          var zonas = Object.keys(respuesta[age_][ciclo_][value]).length;
-          zona_select.appendChild(a_option("huamanga", "Huamanga"));
-          for (let i = 1; i < zonas; i++) {
-            zona_select.appendChild(
-              a_option("zona_" + romanos[i - 1], "Zona " + romanos[i - 1])
-            );
-          }
           examen_ = value;
         });
 
@@ -245,17 +307,21 @@
           const value = zona_select.value;
           lugar_select.selectedIndex = lugar_select[0];
 
-          lugar_select_length = lugar_select.length;
-          if (lugar_select_length != 1) {
-            for (let i = lugar_select_length - 1; i > 0; i--) {
-              lugar_select[i].remove();
-            }
-          }
+          const lugares_options = d3.select(lugar_select)
+                                    .selectAll("option")
+                                    .filter((d,i)=>i!=0)
 
-          lugares = respuesta[age_][ciclo_][examen_][value];
+          if(value != ""){
+            
+            const lugares = respuesta_select[age_][ciclo_][examen_][value]
 
-          for (let i = 0; i < lugares.length; i++) {
-            lugar_select.appendChild(a_option(lugares[i], lugares[i]));
+            lugares_options.data(lugares)
+                           .join("option")
+                           .attr("value", d=>d)
+                           .text(d=>d)
+                           .attr("class", " ")
+          }else{
+            hide_lugar_selector()
           }
         });
       })
@@ -269,6 +335,22 @@
     //    baca.textContent = i;
     //    form[0].appendChild(baca)
     //}
+    function options_menos_vacio(select_element) {
+
+      if (select_element.length == 1) {
+        return "option"
+      }
+
+      const new_options = Array()
+      const options = select_element.getElementsByTagName("option")
+
+      for (const option of options) {
+        if (option.value != "") {
+          new_options.push(option)
+        }
+      }
+      return new_options;
+    }
 
     function a_option(value, textContent) {
       const option = document.createElement("option");
@@ -276,7 +358,12 @@
       option.textContent = textContent;
       return option;
     }
-
+    function hide_ciclo_selector() {
+      ciclo_select.selectedIndex = examen_select[0];
+      for (let i = 1; i < ciclo_select.length; i++) {
+        ciclo_select[i].className = "hide_class";
+      }
+    }
     function hide_examen_selector() {
       examen_select.selectedIndex = examen_select[0];
       for (let i = 1; i < examen_select.length; i++) {
@@ -302,7 +389,7 @@
     const k = 40;
     const w = 16 * k;
     const h = 9 * k;
-    const padding = 40;
+    const padding = {"arriba":40,"izquierda":40,"abajo":40,"derecha":40}
     const escc = 5;
     const svg = d3
       .select("#svg_desplegador")
@@ -311,7 +398,7 @@
       .style("border", "1px black solid");
     //.style("background", "rgb(125, 125, 255)")
 
-    const yScale = d3.scaleLinear().range([h - padding, padding]);
+    const yScale = d3.scaleLinear().range([h - padding.abajo, padding.arriba]);
 
 
     sender.addEventListener("click", desplegador);
@@ -325,13 +412,18 @@
     //    .attr("height", h - padding*2)
 
     function desplegador() {
+      
+      if(age_select.value == ""){
+        return
+      }
+
       var selected = "";
-      var sear = "https://protonianosaurio.github.io/informacion/j_sons/";
+      var json_url = "https://protonianosaurio.github.io/informacion/j_sons/";
 
       let llenos = 0;
       while (form[llenos + 1].value != "") {
         const value = form[llenos].value;
-        sear += value + "/";
+        json_url += value + "/";
         selected += value;
         if (llenos == 3) {
           llenos += 1;
@@ -342,17 +434,17 @@
       }
 
       if (llenos <= 3) {
-        sear += form[llenos].value + ".json";
+        json_url += form[llenos].value + ".json";
       } else {
-        sear += form[llenos].value.toUpperCase() + ".json";
+        json_url += form[llenos].value.toUpperCase() + ".json";
       }
 
       selected += form[llenos].value;
+
       if (lastSelected !== selected) {
         lastSelected = selected;
-        console.log(sear);
 
-        const fechPromise = fetch(sear);
+        const fechPromise = fetch(json_url);
         fechPromise
           .then((response) => {
             if (!response.ok) {
@@ -361,11 +453,11 @@
             return response.json();
           })
           .then((json) => {
-            if(llenos == 4){
+            if (llenos == 4) {
               crearGrafico_para_subzonas(svg, json)
-            }else{
+            } else {
               crearGrafico_para_zonas_por_cantidad(svg, json)
-            } 
+            }
           })
           .catch((error) => {
             console.error(`Could not get products: ${error}`);
@@ -378,7 +470,8 @@
       const escuelas = jsonFile['escuelas']
       const lugar_list = Object.keys(jsonFile['lugares'])
       const colores_por_lugar = {}
-      
+      padding.derecha = 80;
+
       for (let k = 0; k < lugar_list.length; k++) {
         colores_por_lugar[lugar_list[k]] = preferencias[k]
       }
@@ -401,23 +494,23 @@
               ,{"PUQUIO":{"x_individuos": 3,"nota": 13.52},"LOS":{"x_individuos": 1,"nota": 3.52}}]
            |---------------------------------valor de una escuela-----------------------------------------|
       */
-            
-      const valores_relativos_a_nombres_de_escuelas = Object.values(escuelas)
-      const espacio = (w - padding * 2) / valores_relativos_a_nombres_de_escuelas.length;
 
-      const valores_individuos = d3.max(valores_relativos_a_nombres_de_escuelas.map((d)=>{
-            let suma = 0
-            const values = Object.values(d)
-            for (let i = 0; i < values.length; i++) {
-              suma += values[i].x_individuos
-            }
-            return suma
-        }))
-                  
+      const valores_relativos_a_nombres_de_escuelas = Object.values(escuelas)
+      const espacio = (w - (padding.derecha + padding.izquierda)) / valores_relativos_a_nombres_de_escuelas.length;
+
+      const valores_individuos = d3.max(valores_relativos_a_nombres_de_escuelas.map((d) => {
+        let suma = 0
+        const values = Object.values(d)
+        for (let i = 0; i < values.length; i++) {
+          suma += values[i].x_individuos
+        }
+        return suma
+      }))
+
       yScale.domain([0, valores_individuos])
 
       const axisLeft = d3.axisLeft(yScale);
-      
+
       /*
         const colores = {
           "CANGALLO": "rgb(200, 50, 50)",
@@ -457,26 +550,25 @@
         .attr("fill",d=>"rgb("+Math.floor(Math.random()*255)+", 255, "+Math.floor(Math.random()*255)+")")
       */
 
-      svg_element.select('#banana1').selectAll("rect").remove()
-      svg_element.selectAll("g").data([0,1]).join("g").attr("id",(d) =>"banana"+d)
+      svg_element.selectChildren().remove()
 
       svg_element
         .append('g')
-        .attr("transform", "translate(" + (padding - 10) + ",0)")
+        .attr("transform", "translate(" + (padding.izquierda - 10) + ",0)")
         .call(axisLeft)
 
       svg_element
-        .select('#banana1')
+        .append('g')
         .selectAll("g")
         .data(valores_relativos_a_nombres_de_escuelas)
         .join("g")
         .attr("transform", (d, i) => {
           let suma = 0
-          const valores = Object.values(d).map(q=>q.x_individuos)
+          const valores = Object.values(d).map(q => q.x_individuos)
           for (const item of valores) {
             suma += item
           }
-          return "translate(" +(i*espacio + padding) + ","+yScale(suma)+")"
+          return "translate(" + (i * espacio + padding.izquierda) + "," + yScale(suma) + ")"
         })
         .selectAll("rect")
         .data((d) => {
@@ -491,7 +583,7 @@
         })
         .join("rect")
         .attr("height", (d) => {
-          return h - padding - yScale(Object.values(d)[0].x_individuos) 
+          return h - padding.abajo - yScale(Object.values(d)[0].x_individuos)
         })
         .attr("width", (d) => {
           return espacio - 5
@@ -502,20 +594,47 @@
             for (let j = 0; j < i; j++) {
               new_y += parseInt(rects[j].getAttribute("height"), 10)
             }
-            return new_y ;
+            return new_y;
           }
           return 0;
         })
         .attr("stroke", (d, i) => {
           return colores_por_lugar[Object.keys(d)[0]]
         })
-        .attr("fill", (d, i) => {
+        .attr("fill", (d) => {
           return colores_por_lugar[Object.keys(d)[0]]
         })
         .append("title")
         .text((d) => {
           return Object.keys(d)[0]
         })
+        
+      const leyenda_group = svg_element.append("g")
+                                       .attr("transform", "translate(" + (w - padding.derecha) + ", " + 50 + ")")
+      const standar_size = 12;
+
+      leyenda_group
+        .selectAll("g")
+        .data(lugar_list)
+        .enter("g")
+        .append("g")
+        .append("text")
+        .style('font-size', standar_size-1)
+        .attr("x", standar_size + 4)
+        .attr("y", (d, i)=>i+standar_size/2+3)
+        .text(d=>d);
+      
+      leyenda_group
+        .selectAll("g")
+        .data(lugar_list)
+        .join("g")
+        .attr("transform", (d, i)=>"translate(" + 0 + ", " + (i*(standar_size+3)) + ")")
+        .append("rect")
+        .attr("width",standar_size)
+        .attr("height",standar_size)
+        .attr("fill", d=>colores_por_lugar[d])
+
+      padding.derecha = 40;
     }
 
     function crearGrafico_para_subzonas(svg_element, jsonFile) {
@@ -524,10 +643,10 @@
       let nombre_de_escuelas = Object.keys(escuelas);
       let valores_de_las_escuelas = Object.values(escuelas);
 
-      const espacio = (w - padding * 2) / nombre_de_escuelas.length;
+      const espacio = (w - (padding.derecha + padding.izquierda)) / nombre_de_escuelas.length;
 
       //for (const key of nombre_de_escuelas) {
-      //  valores_de_las_escuelas.push(escuelas[key]["x_individuos"]);
+      //  valores_de_las_escuelas.push(escuelas[key]["N_alumnos"]);
       //}
 
       yScale
@@ -536,8 +655,6 @@
       const axisLeft = d3.axisLeft(yScale);
 
       //if (svg_element.selectAll("rect")["_groups"][0].length != 0) {
-
-      
 
       /*
       porque no funciona
@@ -548,24 +665,25 @@
         .attr("transform", "translate(" + (padding - 10) + ",0)")
         .call(axisLeft)
       */
-      //esto elimina rects al igual que lo que tiene cada uno dentro
-      svg_element.select('#banana1').selectAll("rect").remove()
-      svg_element.selectAll("g").data([0,1]).join("g").attr("id",(d) =>"banana"+d)
+
+      svg_element.selectChildren().remove()
 
       svg_element
         .append("g")
-        .attr("transform", "translate(" + (padding - 10) + ",0)")
+        .attr("transform", "translate(" + (padding.izquierda - 10) + ",0)")
         .call(axisLeft)
 
       svg_element
-        .select("#banana1")
+        .append("g")
         .selectAll("rect")
-        .data(valores_de_las_escuelas.map(d=>d.x_individuos))
-        .join("rect")
+        .data(valores_de_las_escuelas.map(d => d.x_individuos))
+        //.data(valores_de_las_escuelas, (d)=>d.x_individuos)
+        .enter()
+        .append("rect")
         .attr("stroke", "none")
-        .attr("height", (d) => h - yScale(d) - padding)
+        .attr("height", (d) => h - yScale(d) - padding.abajo)
         .attr("width", (d) => espacio - 5)
-        .attr("x", (d, i) => padding + i * espacio)
+        .attr("x", (d, i) => padding.izquierda + i * espacio)
         .attr("y", (d) => yScale(d))
         .append("title")
         .text((d, i) => nombre_de_escuelas[i] + d);
